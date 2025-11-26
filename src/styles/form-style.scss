@@ -1,0 +1,125 @@
+    /* Input Container */
+    .input-group {
+        position: relative;
+        //margin-bottom: 20px;
+    }
+
+    /* Input Base */
+    .input-field {
+        width: 100%;
+        height: 44px;
+        background: var(--neutral-450);
+        border: 1px solid var(--neutral-400);
+        border-radius: 0;
+        padding: 0 16px;
+        font-size: 14px;
+        color: var(--white);
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .input-field::placeholder {
+        color: transparent;
+    }
+
+    /* Label */
+    .input-label {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: var(--neutral-100);
+        pointer-events: none;
+        transition: all 0.2s;
+        background: var(--neutral-450);
+        background: linear-gradient(360deg, rgba(44, 44, 44, 1) 0%, rgba(44, 44, 44, 1) 50%, rgba(44, 44, 44, 0) 50%, rgba(44, 44, 44, 0) 100%);
+        padding: 0 4px;
+    }
+
+    /* Label quando input tem foco ou valor */
+    .input-field:focus+.input-label,
+    .input-field:not(:placeholder-shown)+.input-label {
+        top: 0;
+        font-size: 12px;
+    }
+    
+    /* Input Focus */
+    .input-field:focus, .input-label:focus {
+        border-color: var(--neutral-200);
+    }
+
+    /* Input Disabled */
+    .input-field:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    .input-field:disabled+.input-label {
+        opacity: 0.6;
+    }
+
+    /* Input Error */
+    .input-group.error .input-field {
+        border-color: var(--red-500);
+    }
+
+    .input-group.error .input-label {
+        color: var(--red-500);
+    }
+
+    /* Input com ícone */
+    .input-group.with-icon {
+        position: relative;
+    }
+
+    .input-group.with-icon .input-field {
+        padding-left: 40px;
+    }
+
+    .input-group.with-icon .input-label {
+        left: 40px;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--neutral-200);
+        width: 16px;
+        height: 16px;
+        pointer-events: none;
+    }
+
+    /* Ícone de visualizar senha */
+    .toggle-password {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--neutral-200);
+        cursor: pointer;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .toggle-password:hover {
+        color: var(--neutral-100);
+    }
+
+    /* Autofill do Chrome */
+    .input-field:-webkit-autofill,
+    .input-field:-webkit-autofill:hover,
+    .input-field:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px var(--neutral-450) inset !important;
+        -webkit-text-fill-color: var(--white) !important;
+        caret-color: var(--white) !important;
+        border: 1px solid var(--neutral-400);
+    }

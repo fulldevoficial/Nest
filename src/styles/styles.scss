@@ -1,0 +1,125 @@
+@import url(form-style.scss);
+@import url(buttons.scss);
+
+:root {
+  /* Blue */
+  --blue-50: #E6F2FF;
+  --blue-100: #B0D6FF;
+  --blue-200: #8AC2FF;
+  --blue-300: #54A7FF;
+  --blue-400: #3395FF;
+  --blue-500: #007BFF;
+  --blue-600: #0070E8;
+  --blue-700: #0057B5;
+  --blue-800: #00448C;
+  --blue-900: #00346B;
+
+  /* Gray */
+  --black: #000;
+  --white: #fff;
+  --neutral-50: #E9E9E9;
+  --neutral-100: #BABABA;
+  --neutral-200: #989898;
+  --neutral-300: #696969;
+  --neutral-400: #4C4C4C;
+  --neutral-450: #2C2C2C;
+  --neutral-500: #1F1F1F;
+  --neutral-600: #1C1C1C;
+  --neutral-700: #161616;
+  --neutral-800: #111111;
+  --neutral-900: #0D0D0D;
+
+  /* Green */
+  --green-50: #E6F6EE;
+  --green-100: #B0E4CC;
+  --green-200: #8AD7B3;
+  --green-300: #54C590;
+  --green-400: #33B97A;
+  --green-500: #00A859;
+  --green-600: #009951;
+  --green-700: #00773F;
+  --green-800: #005C31;
+  --green-900: #004725;
+
+  /* Red */
+  --red-50: #F7EAE6;
+  --red-100: #E7BEB0;
+  --red-200: #DC9E8A;
+  --red-300: #CB7254;
+  --red-400: #C15733;
+  --red-500: #B22D00;
+  --red-600: #A22900;
+  --red-700: #7E2000;
+  --red-800: #621900;
+  --red-900: #4B1300;
+
+  /* Yellow */
+  --yellow-50: #FCFCE8;
+  --yellow-100: #F7F7B6;
+  --yellow-200: #F3F393;
+  --yellow-300: #EEEE62;
+  --yellow-400: #EAEA44;
+  --yellow-500: #E5E515;
+  --yellow-600: #D0D013;
+  --yellow-700: #A3A30F;
+  --yellow-800: #7E7E0C;
+  --yellow-900: #606009;
+
+  /* Orange */
+  --orange-50: #FDF4E6;
+  --orange-100: #FDEED9;
+  --orange-200: #FADBB0;
+  --orange-300: #EF8C00;
+  --orange-400: #D77E00;
+  --orange-500: #BF7000;
+  --orange-600: #B36900;
+  --orange-700: #8F5400;
+  --orange-800: #6C3F00;
+  --orange-900: #543100;
+}
+
+body,
+html {
+  background-color: #050505;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
