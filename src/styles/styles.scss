@@ -1,14 +1,20 @@
 @use '@angular/material' as mat;
+@use '../../src/styles/form-style.scss' as *;
+@use '../../src/styles/buttons.scss' as *;
+@use '../../src/styles/animation.scss' as *;
+@use '../../src/styles/style-guide.scss' as *;
 
 html {
-  @include mat.theme((
-    color: (
-      primary: mat.$rose-palette,
-      tertiary: mat.$red-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$rose-palette,
+        tertiary: mat.$red-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
 }
 
 body {
@@ -23,78 +29,78 @@ body {
 
 :root {
   /* Blue */
-  --blue-50: #E6F2FF;
-  --blue-100: #B0D6FF;
-  --blue-200: #8AC2FF;
-  --blue-300: #54A7FF;
-  --blue-400: #3395FF;
-  --blue-500: #007BFF;
-  --blue-600: #0070E8;
-  --blue-700: #0057B5;
-  --blue-800: #00448C;
-  --blue-900: #00346B;
+  --blue-50: #e6f2ff;
+  --blue-100: #b0d6ff;
+  --blue-200: #8ac2ff;
+  --blue-300: #54a7ff;
+  --blue-400: #3395ff;
+  --blue-500: #007bff;
+  --blue-600: #0070e8;
+  --blue-700: #0057b5;
+  --blue-800: #00448c;
+  --blue-900: #00346b;
 
   /* Gray */
   --black: #000;
   --white: #fff;
-  --neutral-50: #E9E9E9;
-  --neutral-100: #BABABA;
+  --neutral-50: #e9e9e9;
+  --neutral-100: #bababa;
   --neutral-200: #989898;
   --neutral-300: #696969;
-  --neutral-400: #4C4C4C;
-  --neutral-450: #2C2C2C;
-  --neutral-500: #1F1F1F;
-  --neutral-600: #1C1C1C;
+  --neutral-400: #4c4c4c;
+  --neutral-450: #2c2c2c;
+  --neutral-500: #1f1f1f;
+  --neutral-600: #1c1c1c;
   --neutral-700: #161616;
   --neutral-800: #111111;
-  --neutral-900: #0D0D0D;
+  --neutral-900: #0d0d0d;
 
   /* Green */
-  --green-50: #E6F6EE;
-  --green-100: #B0E4CC;
-  --green-200: #8AD7B3;
-  --green-300: #54C590;
-  --green-400: #33B97A;
-  --green-500: #00A859;
+  --green-50: #e6f6ee;
+  --green-100: #b0e4cc;
+  --green-200: #8ad7b3;
+  --green-300: #54c590;
+  --green-400: #33b97a;
+  --green-500: #00a859;
   --green-600: #009951;
-  --green-700: #00773F;
-  --green-800: #005C31;
+  --green-700: #00773f;
+  --green-800: #005c31;
   --green-900: #004725;
 
   /* Red */
-  --red-50: #F7EAE6;
-  --red-100: #E7BEB0;
-  --red-200: #DC9E8A;
-  --red-300: #CB7254;
-  --red-400: #C15733;
-  --red-500: #B22D00;
-  --red-600: #A22900;
-  --red-700: #7E2000;
+  --red-50: #f7eae6;
+  --red-100: #e7beb0;
+  --red-200: #dc9e8a;
+  --red-300: #cb7254;
+  --red-400: #c15733;
+  --red-500: #b22d00;
+  --red-600: #a22900;
+  --red-700: #7e2000;
   --red-800: #621900;
-  --red-900: #4B1300;
+  --red-900: #4b1300;
 
   /* Yellow */
-  --yellow-50: #FCFCE8;
-  --yellow-100: #F7F7B6;
-  --yellow-200: #F3F393;
-  --yellow-300: #EEEE62;
-  --yellow-400: #EAEA44;
-  --yellow-500: #E5E515;
-  --yellow-600: #D0D013;
-  --yellow-700: #A3A30F;
-  --yellow-800: #7E7E0C;
+  --yellow-50: #fcfce8;
+  --yellow-100: #f7f7b6;
+  --yellow-200: #f3f393;
+  --yellow-300: #eeee62;
+  --yellow-400: #eaea44;
+  --yellow-500: #e5e515;
+  --yellow-600: #d0d013;
+  --yellow-700: #a3a30f;
+  --yellow-800: #7e7e0c;
   --yellow-900: #606009;
 
   /* Orange */
-  --orange-50: #FDF4E6;
-  --orange-100: #FDEED9;
-  --orange-200: #FADBB0;
-  --orange-300: #EF8C00;
-  --orange-400: #D77E00;
-  --orange-500: #BF7000;
-  --orange-600: #B36900;
-  --orange-700: #8F5400;
-  --orange-800: #6C3F00;
+  --orange-50: #fdf4e6;
+  --orange-100: #fdeed9;
+  --orange-200: #fadbb0;
+  --orange-300: #ef8c00;
+  --orange-400: #d77e00;
+  --orange-500: #bf7000;
+  --orange-600: #b36900;
+  --orange-700: #8f5400;
+  --orange-800: #6c3f00;
   --orange-900: #543100;
 }
 
@@ -106,7 +112,7 @@ html {
   align-items: center;
   justify-content: center;
   margin: 0;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 *,
@@ -143,6 +149,10 @@ table {
   border-spacing: 0;
 }
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}

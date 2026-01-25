@@ -1,14 +1,19 @@
 <section class="wrapper">
     <section class="menu">
-        <app-toolbar></app-toolbar>
+        <app-toolbar (notifyChange)="toggleNotify($event)"/>
     </section>
     <section class="body">
-        <aside>
+        <aside class="nav">
             Nav
         </aside>
         <section class="section-router">
             Section
         </section>
+        @if(hasNotify){
+            <aside class="notify">
+                Notify
+            </aside>
+        }
     </section>
     <footer>
         

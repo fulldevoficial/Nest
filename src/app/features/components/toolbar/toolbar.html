@@ -1,0 +1,63 @@
+<section>
+  <div class="nav">
+    <div class="logo">
+      <img src="assets/icon.svg" alt="App Logo" />
+    </div>
+    <div class="filter">
+      <div class="dropdown">
+        <button matButton [matMenuTriggerFor]="category">
+          Categoria
+          <mat-icon class="icon">keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #category="matMenu">
+          @for (item of items; track item) {
+            <button mat-menu-item>
+              {{ item.name }}
+            </button>
+          }
+        </mat-menu>
+      </div>
+      <input type="text" class="input-field" />
+    </div>
+    <div class="user-action">
+
+      <button class="btn-text" matButton>
+        <mat-icon class="icon">add</mat-icon>
+        Indicar
+      </button>
+
+      <div class="notify">
+        <button class="btn-outlined" (click)="toggleNotify()">
+          <mat-icon class="icon">notifications</mat-icon>
+        </button>
+        <div class="badge">2</div>
+      </div>
+
+      <div class="user-configuration">
+        <button matButton [matMenuTriggerFor]="menu">
+          <img src="{{ userLogged?.avatar ?? 'assets/icon/user-default.png' }}" alt="imagem-do-usuario-logado" />
+        </button>
+        
+        <mat-menu #menu="matMenu" class="menu-user">
+          <div class="info-user">
+            <div class="avatar">
+              <img src="{{ userLogged?.avatar ?? 'assets/icon/user-default.png' }}" alt="imagem-do-usuario-logado" />
+            </div>
+
+            <div class="wrapper-info">
+              <div class="info">
+                <p>{{ userLogged?.name }}</p>
+                <p>{{ userLogged?.username }}</p>
+              </div>
+
+              <button class="btn-outlined">
+                Ver perfil
+              </button>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
+
+    </div>
+  </div>
+</section>

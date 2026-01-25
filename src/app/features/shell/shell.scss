@@ -3,6 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   .menu {
     width: 100vw;
@@ -15,8 +16,16 @@
     display: flex;
 
     aside {
-      width: 100%;
-      max-width: 225px;
+      &.nav {
+        width: 100%;
+        max-width: 225px;
+      }
+
+      &.notify {
+        width: 100%;
+        max-width: 300px;
+        animation: right-left 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
     }
 
     .section-router {

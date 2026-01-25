@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ToolBar } from "../components/menu/toolbar";
+import { ToolBar } from "../components/toolbar/toolbar";
 
 @Component({
   selector: 'app-shell',
@@ -8,5 +8,11 @@ import { ToolBar } from "../components/menu/toolbar";
   styleUrl: './shell.scss',
 })
 export class Shell {
+  hasNotify = false;
 
+  toggleNotify(e: boolean) {
+    console.log(e);
+    
+    this.hasNotify = e;
+  }
 }
