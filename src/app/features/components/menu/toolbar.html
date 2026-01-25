@@ -1,0 +1,28 @@
+<section>
+  <div class="nav">
+    <div class="logo">
+      <img src="assets/icon.svg" alt="App Logo" />
+    </div>
+    <div class="filter">
+      <div class="dropdown">
+        <button matButton [matMenuTriggerFor]="menu">
+          Categoria
+          <mat-icon class="icon">keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          @for (item of items; track item) {
+            <button mat-menu-item>
+              {{ item.name }}
+            </button>
+          }
+        </mat-menu>
+      </div>
+      <input type="text" class="input-field" placeholder="Pesquise um curso" />
+    </div>
+    <div class="user-action">
+      <div class="button-curso"></div>
+      <div class="notify"></div>
+      <div class="user-configuration"></div>
+    </div>
+  </div>
+</section>

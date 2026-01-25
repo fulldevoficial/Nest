@@ -1,0 +1,32 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .menu {
+    width: 100vw;
+    max-height: 80px;
+  }
+
+  .body {
+    width: 100vw;
+    height: calc(100vh - (80px + 173px));
+    display: flex;
+
+    aside {
+      width: 100%;
+      max-width: 225px;
+    }
+
+    .section-router {
+      width: 100%;
+      max-width: calc(100vw - 225px);
+    }
+  }
+
+  footer {
+    width: 100vw;
+    height: 173px;
+  }
+}
