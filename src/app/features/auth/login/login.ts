@@ -1,48 +1,53 @@
-import { NgClass } from '@angular/common';
-import { Component, Inject, Injector, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@app/core/services/auth-service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Dialog } from "@app/features/components/dialog/dialog";
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, Dialog],
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
 })
 export class Login implements OnInit {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private fb = inject(FormBuilder);
+  private auth = inject(AuthService);
+  private _snackBar = inject(MatSnackBar);
 
-  titulo: string = '';
-  subtitulo: string = 'Insira seus dados de login abaixo:';
+  titulo = '';
+  subtitulo = 'Insira seus dados de login abaixo:';
   loginForm!: FormGroup;
   hidePassword = true;
-  formsView: boolean = true;
-  loadingIcon: boolean = false;
-  showButtonContact: boolean = false;
-  isTheNewVisitant: boolean = true;
+  loadingIcon = false;
+  isTheNewVisitant = true;
+  returnUrl = '/dashboard';
+  errorMessage = signal('');
+  showLoadingDialog = signal(false);
+  showErrorDialog = signal(false);
+  dialogErrorMessage = signal('');
 
-  constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private auth: AuthService,
-  ) {
+  constructor() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
 
   ngOnInit(): void {
-    if (typeof window !== 'undefined') { // A merda do SSR fica tentando achar o localstorage, para não dar erro, chamamos essa condicao para setar o titulo de primeira visita
+    if (typeof window !== 'undefined') {
       const visited = localStorage.getItem('visited');
 
       console.log(visited);
-  
-      if(!visited) {
+
+      if (!visited) {
         this.isTheNewVisitant = true;
         this.titulo = 'Fala Dev, Seja muito bem-vindo!';
-  
+
         localStorage.setItem('visited', 'true');
       } else {
         this.isTheNewVisitant = false;
@@ -66,36 +71,39 @@ export class Login implements OnInit {
       return;
     }
 
-    this.loadingIcon = true;
-    this.formsView = false;
-    this.titulo = 'Quase lá';
-    this.subtitulo = 'Estamos confirmando seus dados';
+    this.errorMessage.set('');
+    this.showLoadingDialog.set(true);
 
-    const data = this.loginForm.value;
+    const credentials = this.loginForm.value;
 
-    this.auth.login(data).subscribe({
+    this.auth.login(credentials).subscribe({
       next: (response) => {
         this.loadingIcon = false;
-        this.showButtonContact = false;
+        this.showLoadingDialog.set(false);
 
         this.titulo = 'Tudo certo!';
         this.subtitulo = 'Seus dados foram confirmados com sucesso.';
 
-        console.log('eae?', response);
+        console.log('Login bem-sucedido:', response);
 
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['']); //Jogar para o dash
+        setTimeout(() => {
+          this.router.navigate([this.returnUrl]);
+        }, 1000);
+      },
+      error: (error) => {
+        this.showLoadingDialog.set(false);
+        this.showErrorDialog.set(true);
+        this.errorMessage.set(error.message || 'Email ou senha incorretos');
+        this._snackBar.open(error.message, '', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+        });
 
-      }, error: (error) => {
-        this.loadingIcon = true;
-        this.showButtonContact = true;
+        this.loadingIcon = false;
 
-        this.titulo = 'Ops... algo deu errado';
-        this.subtitulo = 'Verifique os dados e tente novamente.';
-
-        console.log('error?', error);
-      }
-    })
+        console.error('Erro no login:', error);
+      },
+    });
   }
 
   navigate(value: string) {
@@ -115,10 +123,15 @@ export class Login implements OnInit {
   }
 
   asErrorReset() {
-    this.titulo = 'Fala Dev, Bem-vindo de Volta!';
+    this.titulo = this.isTheNewVisitant
+      ? 'Fala Dev, Seja muito bem-vindo!'
+      : 'Fala Dev, Bem-vindo de volta!';
     this.subtitulo = 'Insira seus dados de login abaixo:';
-    this.formsView = true
     this.loadingIcon = false;
-    this.showButtonContact = false;
+    this.errorMessage.set('');
+  }
+
+  closeErrorDialog(e: boolean) {
+    this.showErrorDialog.set(e);
   }
 }

@@ -1,83 +1,105 @@
 <section class="wrapper">
-    <section class="box-component-login">
-        <section class="header-component">
-            <img src="assets/icon.svg" [ngClass]="{ 'pulse': loadingIcon }" alt="">
+  <section class="box-component-login">
+    <section class="header-component">
+      <img src="assets/icon.svg" alt="logo-fulldev" />
 
-            <div class="text">
-                <p class="titulo">{{titulo}}</p>
-                <p class="subtitulo">{{subtitulo}}</p>
-            </div>
-        </section>
-
-        <section class="body-component" [ngClass]="{ 'hidden' : !formsView }">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-
-                <div class="input-group"
-                    [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-                    <input type="text" class="input-field" #email formControlName="email">
-                    <label for="email" class="input-label">E-mail</label>
-                </div>
-
-                <div class="input-group"
-                    [class.error]="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched">
-                    <input #senhaInput type="password" class="input-field" id="senha" formControlName="senha">
-                    <label for="senha" class="input-label">Senha</label>
-                    <button type="button" class="toggle-password" (click)="togglePassword('senha')">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="forgot">
-                    <a (click)="navigate('forgot')">Esqueceu a senha?</a>
-                </div>
-
-                <button type="submit" class="primary-button red" [disabled]="loginForm.invalid && loginForm.dirty">
-                    Entrar
-                </button>
-            </form>
-
-            <div class="divider-span">
-                <span></span>
-                <p>
-                    ou
-                </p>
-                <span></span>
-            </div>
-
-            <section class="buttons">
-                <button class="primary-button neutral">
-                    <img src="assets/icon/icon-login-google.png" alt="">
-                    Google
-                </button>
-
-                <button class="primary-button neutral">
-                    <img src="assets/icon/icon-login-facebook.png" alt="">
-                    Facebook
-                </button>
-
-            </section>
-
-            <span class="register">
-                <p>Não tem conta?</p>
-                <a (click)="navigate('register')">Registre-se</a>
-            </span>
-
-            <a class="login-company-link" (click)="navigate('registerCompany')">Logar como empresa</a>
-        </section>
-
-        @if(showButtonContact){
-        <section class="as-error-login">
-            <button class="primary-button red">
-                Falar com suporte
-            </button>
-            <button class="primary-button transparent" (click)="asErrorReset()">
-                Retornar ao login
-            </button>
-        </section>
-        }
+      <div class="text">
+        <p class="titulo">{{ titulo }}</p>
+        <p class="subtitulo">{{ subtitulo }}</p>
+      </div>
     </section>
+
+    <section class="body-component">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div
+          class="input-group"
+          [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+        >
+          <input type="text" class="input-field" #email formControlName="email" />
+          <label for="email" class="input-label">E-mail</label>
+        </div>
+
+        <div
+          class="input-group"
+          [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        >
+          <input
+            #senhaInput
+            type="password"
+            class="input-field"
+            id="password"
+            formControlName="password"
+          />
+          <label for="password" class="input-label">Senha</label>
+          <button type="button" class="toggle-password" (click)="togglePassword('password')">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+
+        <div class="forgot">
+          <a (click)="navigate('forgot')">Esqueceu a senha?</a>
+        </div>
+
+        <button
+          type="submit"
+          class="primary-button red"
+          [disabled]="loginForm.invalid && loginForm.dirty"
+        >
+          Entrar
+        </button>
+      </form>
+
+      <div class="divider-span">
+        <span></span>
+        <p>ou</p>
+        <span></span>
+      </div>
+
+      <section class="buttons">
+        <button class="primary-button neutral">
+          <img src="assets/icon/icon-login-google.png" alt="" />
+          Google
+        </button>
+
+        <button class="primary-button neutral">
+          <img src="assets/icon/icon-login-facebook.png" alt="" />
+          Facebook
+        </button>
+      </section>
+
+      <span class="register">
+        <p>Não tem conta?</p>
+        <a (click)="navigate('register')">Registre-se</a>
+      </span>
+
+      <a class="login-company-link" (click)="navigate('registerCompany')">Logar como empresa</a>
+    </section>
+  </section>
 </section>
+
+@if (showLoadingDialog()) {
+  <app-dialog
+    [titulo]="'Carregando...'"
+    [mensagem]="'Por favor, aguarde enquanto processamos sua solicitação.'"
+    [error]="false"
+  />
+}
+
+@if (showErrorDialog()) {
+  <app-dialog
+    [titulo]="'Erro no login'"
+    [mensagem]="errorMessage()"
+    [error]="true"
+    (closeDialog)="closeErrorDialog($event)"
+  />
+}

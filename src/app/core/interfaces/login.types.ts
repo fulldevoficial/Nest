@@ -1,16 +1,30 @@
 export interface LoginRequest {
   email: string;
-  senha: string;
+  password: string;
 }
 
 export interface LoginResponse {
-  token: string;
-  user: {
-    id: string;
-    nome: string;
-    email: string;
-  };
+  accessToken: string;
+  refreshToken: string;
+  user: UserLogged;
+  expiresIn: number;
 }
+
+export interface RegisterRequest {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface TokenPayload {
+  userId: string;
+  email: string;
+  role: string;
+  iat: number;
+  exp: number;
+}
+
 export type UserPermission = 'COURSE_CREATE' | 'COURSE_EDIT' | 'USER_VIEW' | 'DASHBOARD_ACCESS';
 
 export type UserRole = 'admin' | 'user' | 'moderator';

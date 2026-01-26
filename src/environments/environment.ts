@@ -4,7 +4,7 @@ export const environment: Environment = {
   name: 'development',
   production: false,
   api: {
-    baseUrl: 'http://localhost:5046',
+    baseUrl: 'http://localhost:3000',
     version: 'v1'
   },
   featureFlags: {},

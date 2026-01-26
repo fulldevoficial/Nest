@@ -1,0 +1,18 @@
+<div class="dialog-overlay">
+  <div class="dialog-content">
+    <div class="content">
+        <img src="assets/icon.svg" class="pulse" alt="" />
+    
+        <div class="status">
+            <h2>{{titulo}}</h2>
+            <p>{{mensagem}}</p>
+        </div>
+    </div>
+
+    @if(error){
+        <button class="btn-red" (click)="toggleCloseDialog()">
+            Fechar
+        </button>
+    }
+  </div>
+</div>

@@ -11,7 +11,7 @@ section {
   background-color: var(--neutral-900);
   border-bottom: solid 1px var(--neutral-500);
   font-size: 14px;
-  font-weight: regular;
+  font-weight: normal;
   padding: 0 20px;
 
   mat-icon {
@@ -171,7 +171,7 @@ section {
 
       p:nth-child(2) {
         font-size: 12px;
-        font-weight: regular;
+        font-weight: normal;
         color: var(--neutral-300);
         margin: 0;
       }
