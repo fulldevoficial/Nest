@@ -1,7 +1,9 @@
 export type EnvironmentName = 'development' | 'stage' | 'production';
 
 export interface ApiConfig {
-  baseUrl: string;
+  baseUrl?: string;
+  httpBaseUrl?: string;
+  httpsBaseUrl?: string;
   version: string;
 }
 

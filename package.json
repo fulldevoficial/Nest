@@ -3,15 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start:open": "ng serve --open",
+    "cert:generate": "node scripts/generate-cert.js",
+    "cert:trust": "certutil -addstore -f -user Root certs\\localhost.cer",
+    "start": "npm run cert:generate && ng serve --ssl true --ssl-cert certs/localhost.crt --ssl-key certs/localhost.key",
+    "start:open": "npm run cert:generate && ng serve --ssl true --ssl-cert certs/localhost.crt --ssl-key certs/localhost.key --open",
+    "start:http": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:nest": "node dist/nest/server/server.mjs",
     "lint": "ng lint",
-    "api": "json-server --watch db.json --port 3000",
-    "dev": "concurrently \"npm run start\" \"npm run api\""
+    "dev": "npm run start"
   },
   "prettier": {
     "printWidth": 100,
@@ -55,13 +57,13 @@
     "concurrently": "^9.2.1",
     "eslint": "^9.38.0",
     "jasmine-core": "~5.9.0",
-    "json-server": "^1.0.0-beta.5",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.9.2",
-    "typescript-eslint": "8.46.1"
+    "typescript-eslint": "8.46.1",
+    "selfsigned": "^2.4.1"
   }
 }

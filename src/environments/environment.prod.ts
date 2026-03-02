@@ -4,8 +4,8 @@ export const environment: Environment = {
   name: 'production',
   production: true,
   api: {
-    baseUrl: 'https://api.fulldev.dev',
-    version: 'v1'
+    httpsBaseUrl: 'https://api.fulldev.dev/api',
+    version: 'v1',
   },
   featureFlags: {},
 };

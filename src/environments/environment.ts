@@ -4,8 +4,9 @@ export const environment: Environment = {
   name: 'development',
   production: false,
   api: {
-    baseUrl: 'http://localhost:3000',
-    version: 'v1'
+    httpBaseUrl: 'http://localhost:5046/api',
+    httpsBaseUrl: 'https://localhost:7030/api',
+    version: 'v1',
   },
   featureFlags: {},
 };
